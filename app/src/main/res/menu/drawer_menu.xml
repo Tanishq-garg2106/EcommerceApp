@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="home">
+        </item>
+        <item android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="setting">
+        </item>
+        <item android:id="@+id/nav_order"
+            android:icon="@drawable/ic_baseline_shopping_bag_24"
+            android:title="My orders">
+        </item>
+        <item android:id="@+id/nav_rewards"
+            android:icon="@drawable/ic_baseline_shop_24"
+            android:title="My rewards">
+        </item>
+        <item android:id="@+id/nav_wishlist"
+            android:icon="@drawable/ic_baseline_featured_play_list_24"
+            android:title="wishlist">
+
+        </item>
+
+        <item android:id="@+id/nav_Policy"
+            android:icon="@drawable/ic_baseline_policy_24"
+            android:title="Privacy Policy">
+        </item>
+        <item android:id="@+id/nav_account"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="My account">
+        </item>
+        <item android:id="@+id/nav_share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="share">
+
+        </item>
+
+
+
+</menu>

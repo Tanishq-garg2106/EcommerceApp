@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260146019751",
+    "project_id": "ecommerse-70627",
+    "storage_bucket": "ecommerse-70627.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260146019751:android:c411ff23162956b6f8ca82",
+        "android_client_info": {
+          "package_name": "com.tanishq.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260146019751-90q6ao884ovtfpeb30motr8qq7jur98e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqJr_yb3APiFFgLQ82RDUXFE9TFfU5R1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260146019751-90q6ao884ovtfpeb30motr8qq7jur98e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
