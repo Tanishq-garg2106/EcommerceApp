@@ -1,5 +1,6 @@
 package com.tanishq.ecommerce;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,14 @@ private List <HorizontalProductScrollModel> horizontalProductScrollModelList;
             productTitle = itemView.findViewById(R.id.h_s_product_title);
             productDescription = itemView.findViewById(R.id.h_s_product_description);
             productRates = itemView.findViewById(R.id.h_s_product_price);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent productDetailsIntent = new Intent(itemView.getContext(),ProductDetailsActivit.class);
+                    itemView.getContext().startActivity(productDetailsIntent);
+                }
+            });
         }
         private void setProductImage(int resource){
             productImage.setImageResource(resource);

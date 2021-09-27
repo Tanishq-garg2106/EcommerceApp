@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_Detail_container"
+    android:background="@color/white"
+    android:elevation="3dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/product_detail_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#d4d4d4"
+        android:padding="16dp"
+        android:text="Product detail"
+        android:textColor="#9c9c9c"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/product_detail_body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="That’s a yeah, yeah phrase. As soon as a potential buyer reads excellent product quality he thinks, yeah, yeah, of course; that’s what everyone says. Ever heard someone describe their product quality as average, not-so-good, or even bad?"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_detail_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>

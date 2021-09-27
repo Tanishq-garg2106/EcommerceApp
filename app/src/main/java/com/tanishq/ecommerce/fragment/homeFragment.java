@@ -17,13 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.smarteist.autoimageslider.DefaultSliderView;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderLayout;
+import com.tanishq.ecommerce.CategoryAdapter;
+import com.tanishq.ecommerce.CategoryModel;
 import com.tanishq.ecommerce.GridProductLayoutAdapter;
 import com.tanishq.ecommerce.HomePageAdapter;
 import com.tanishq.ecommerce.HomePageModel;
@@ -84,27 +81,9 @@ public class homeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
-    ///////////// Poster Slider
-    private ViewPager posterSliderViewPager;
-    private List<SliderModel> sliderModelList;
-    private int currentPage =2;
-    private Timer timer;
-    final private long DELAY_TIME =3000;
-    final private long PERIOD_TIME =3000;
-    ///////////// Poster Slider
-    ///////////// Strip Ad
-    private ImageView stripAdImage;
-    private ConstraintLayout stripAdContainer;
-
-    ///////////// Strip Ad
-
-    ///////////// Horizontal Product layout
-    private TextView horizontalLayoutTitle;
-    private Button horizontalLayoutViewAllBtn;
-    private RecyclerView horizontalRecyclerView;
-    ///////////// Horizontal Product layout
+    private RecyclerView categoryRecyclerView;
+    private CategoryAdapter categoryAdapter;
+    private RecyclerView testing;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,11 +91,30 @@ public class homeFragment extends Fragment {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+         categoryRecyclerView = view.findViewById(R.id.category_recycler_view);
+         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+         categoryRecyclerView.setLayoutManager(layoutManager);
+
+         final List<CategoryModel>categoryModelList = new ArrayList<CategoryModel>();
+         categoryModelList.add(new CategoryModel("link"," Home"));
+        categoryModelList.add(new CategoryModel("link","Electronics"));
+        categoryModelList.add(new CategoryModel("link","Appliances"));
+        categoryModelList.add(new CategoryModel("link","Furniture"));
+        categoryModelList.add(new CategoryModel("link","Fashion"));
+        categoryModelList.add(new CategoryModel("link","Toy"));
+        categoryModelList.add(new CategoryModel("link","Sports"));
+        categoryModelList.add(new CategoryModel("link","WallArt"));
+        categoryModelList.add(new CategoryModel("link","Books"));
+        categoryModelList.add(new CategoryModel("link","Shoes"));
+
+        categoryAdapter = new CategoryAdapter(categoryModelList);
+        categoryRecyclerView.setAdapter(categoryAdapter);
+        categoryAdapter.notifyDataSetChanged();
+
 ///////////// Poster Slider
 
-        posterSliderViewPager = view.findViewById(R.id.banner_slider_view_pager);
-
-        sliderModelList= new ArrayList<SliderModel>();
+        List<SliderModel>sliderModelList= new ArrayList<SliderModel>();
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_settings_24,"#077AE4"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_share_24,"#077AE4"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_account_box_24, "#077AE4"));
@@ -129,58 +127,12 @@ public class homeFragment extends Fragment {
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_account_box_24,"#077AE4"));
         sliderModelList.add(new SliderModel(R.drawable.ic_baseline_home_24,"#077AE4"));
 
-        SliderAdapter sliderAdapter= new SliderAdapter(sliderModelList);
-        posterSliderViewPager.setAdapter(sliderAdapter);
-        posterSliderViewPager.setClipToPadding(false);
-        posterSliderViewPager.setPageMargin(20);
 
-        posterSliderViewPager.setCurrentItem(currentPage);
-
-        ViewPager.OnPageChangeListener onPageChangeListener =new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i , float v, int i1) {
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                currentPage = i;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                if (i == ViewPager.SCROLL_STATE_IDLE){
-                    pageLopper();
-                }
-            }
-        };
-        posterSliderViewPager.addOnPageChangeListener(onPageChangeListener);
-
-        startPosterSlideShow();
-        posterSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                pageLopper();
-                startPosterSlideShow();
-                if (event.getAction() == MotionEvent.ACTION_UP){
-                    startPosterSlideShow();
-                }
-                return false;
-            }
-        });
         ///////////// Poster Slider
 
-        ///////////// Strip Ad
-        stripAdImage = view.findViewById(R.id.strip_ad_image);
-        stripAdContainer = view.findViewById(R.id.strip_ad_container);
-
-        stripAdImage.setImageResource(R.drawable.key);
-        stripAdContainer.setBackgroundColor(Color.parseColor("#077AE4"));
-        ///////////// Strip Ad
 
         ///////////// Horizontal Product layout
-        horizontalLayoutTitle = view.findViewById(R.id.horizontal_scroll_layout_tittle);
-        horizontalLayoutViewAllBtn = view.findViewById(R.id.horizontal_scroll_layout_btn);
-        horizontalRecyclerView = view.findViewById(R.id.horizontal_scroll_layout_recyclerview);
+
 
         List<HorizontalProductScrollModel> horizontalProductScrollModelList =  new ArrayList<>();
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.phone_image,"Iphone 11","128GB Storage","Rs.52000/-"));
@@ -194,28 +146,12 @@ public class homeFragment extends Fragment {
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.phone_image,"Iphone 11 pro","20GB Storage","Rs.2000/-"));
 
 
-        HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        horizontalRecyclerView.setLayoutManager(linearLayoutManager);
 
-        horizontalRecyclerView.setAdapter(horizontalProductScrollAdapter);
-        horizontalProductScrollAdapter.notifyDataSetChanged();
         ///////////// Horizontal Product layout
-
-        ///////////// Grid Product Layout
-
-        TextView gridLayoutTitle = view.findViewById(R.id.grid_product_layout_title);
-        Button gridLayoutViewBtn = view.findViewById(R.id.grid_product_view_btn);
-        GridView gridView = view.findViewById(R.id.grid_product_layout_gridview);
-
-        gridView.setAdapter(new GridProductLayoutAdapter(horizontalProductScrollModelList));
-
-        ///////////// Grid Product Layout
 
         /////////////////////
 
-        RecyclerView testing =view.findViewById(R.id.testing);
+        testing =view.findViewById(R.id.Home_page_recyclerview);
         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         testing.setLayoutManager(testingLayoutManager);
@@ -240,44 +176,4 @@ public class homeFragment extends Fragment {
         return view;
 
     }
-
-    ///////////// Poster Slider
-    private void pageLopper(){
-        if (currentPage== sliderModelList.size() - 2){
-            currentPage = 2;
-            posterSliderViewPager.setCurrentItem(currentPage,false);
-        }
-        if (currentPage== 1){
-            currentPage = sliderModelList.size() - 3;
-            posterSliderViewPager.setCurrentItem(currentPage,false);
-        }
-
-    }
-
-
-    private void startPosterSlideShow(){
-        Handler handler = new Handler();
-        Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                if(currentPage >= sliderModelList.size()){
-                    currentPage = 1;
-                }
-                posterSliderViewPager.setCurrentItem(currentPage++,true);
-            }
-        };
-
-        timer = new Timer() ;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        },DELAY_TIME,PERIOD_TIME);
-    }
-
-    private void stopPosterSlideShow(){
-        timer.cancel();
-    }
-    ///////////// Poster Slider
  }

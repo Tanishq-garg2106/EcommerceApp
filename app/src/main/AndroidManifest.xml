@@ -12,14 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerce">
         <activity
+            android:name=".ProductDetailsActivit"
+            android:exported="true" />
+        <activity
+            android:name=".CategoryActivit"
+            android:exported="true" />
+        <activity
             android:name=".registration_Activity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".login_Activity" />
         <activity
             android:name=".MainActivity"
             android:label="MainActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity2"
             android:exported="true">

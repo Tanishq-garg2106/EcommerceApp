@@ -6,10 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
+    private FrameLayout frameLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +39,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation_drawer);
+        frameLayout = findViewById(R.id.main_frameLayout);
+
 
         toggle= new ActionBarDrawerToggle(this,drawerLayout,R.string.start,R.string.close);
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
+
     }
 
     @Override
@@ -100,5 +106,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         return true;
+    }
+    private void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(frameLayout.getId(),fragment);
+        fragmentTransaction.commit();
     }
 }
